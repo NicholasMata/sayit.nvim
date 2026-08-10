@@ -5,6 +5,8 @@ All notable changes to sayit.nvim are documented here. This project follows
 
 ## Unreleased
 
+## 0.1.0 - 2026-08-09
+
 ### Added
 
 - Voice and speaking-rate configuration.

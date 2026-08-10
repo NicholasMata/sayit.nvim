@@ -18,6 +18,7 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
 ```lua
 {
   "nicholasmata/sayit.nvim",
+  version = "*", -- use the latest stable release
   opts = {},
 }
 ```
