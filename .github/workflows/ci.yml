@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tools
+        run: brew install neovim stylua selene
+      - name: Check formatting
+        run: stylua --check lua tests
+      - name: Lint
+        run: selene lua tests
+      - name: Test
+        run: NVIM_LOG_FILE=/tmp/sayit-nvim.log nvim --clean --headless -u tests/minimal_init.lua -l tests/sayit_spec.lua
