@@ -3,10 +3,10 @@ local failures = 0
 local function test(name, callback)
 	local ok, error_message = pcall(callback)
 	if ok then
-		io.stdout:write("ok - " .. name .. "\n")
+		io.write("ok - " .. name .. "\n")
 	else
 		failures = failures + 1
-		io.stderr:write("not ok - " .. name .. "\n  " .. error_message .. "\n")
+		vim.api.nvim_err_writeln("not ok - " .. name .. "\n  " .. error_message)
 	end
 end
 
@@ -42,7 +42,7 @@ test("toggle stops without restarting", function()
 	end
 
 	assert(sayit.toggle("first"))
-	assert(not sayit.toggle("second"))
+	assert(not sayit.toggle("second"), "active speech should toggle off")
 	equal(starts, 1)
 	equal(kills, 1)
 	vim.system = original_system
@@ -99,7 +99,7 @@ end)
 
 test("validates rate", function()
 	local ok = pcall(sayit.setup, { rate = 0 })
-	assert(not ok)
+	assert(not ok, "an invalid rate should fail validation")
 end)
 
 if failures > 0 then
