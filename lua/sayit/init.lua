@@ -339,6 +339,11 @@ function M.setup(opts)
 	config = new_config
 	create_commands()
 	set_mappings()
+	vim.api.nvim_create_autocmd("VimLeavePre", {
+		group = vim.api.nvim_create_augroup("SayIt", { clear = true }),
+		callback = M.stop,
+		desc = "Stop speech when leaving Neovim",
+	})
 	return M
 end
 
