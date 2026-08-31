@@ -2,7 +2,8 @@
 
 Native macOS text-to-speech for Neovim. Speak a word, selection, motion, line,
 paragraph, range, or entire buffer with the built-in `say` command. Triggering a
-toggle action while speech is active stops it.
+toggle action while speech is active stops it. Active speech also stops when
+Neovim exits.
 
 ## Requirements
 

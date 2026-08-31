@@ -3,7 +3,11 @@
 All notable changes to sayit.nvim are documented here. This project follows
 [Semantic Versioning](https://semver.org/).
 
-## Unreleased
+## 0.1.1 - 2026-08-31
+
+### Fixed
+
+- Active speech now stops when Neovim exits.
 
 ## 0.1.0 - 2026-08-09
 

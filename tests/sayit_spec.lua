@@ -48,6 +48,25 @@ test("toggle stops without restarting", function()
 	vim.system = original_system
 end)
 
+test("stops speech when leaving Neovim", function()
+	local kills = 0
+	local original_system = vim.system
+	vim.system = function(_, _, _)
+		return {
+			pid = 42,
+			kill = function()
+				kills = kills + 1
+			end,
+		}
+	end
+
+	assert(sayit.start("goodbye"))
+	vim.api.nvim_exec_autocmds("VimLeavePre", {})
+	equal(kills, 1)
+	assert(not sayit.is_speaking(), "speech state was not cleared")
+	vim.system = original_system
+end)
+
 test("completion clears only its own process", function()
 	local callbacks = {}
 	local original_system = vim.system
